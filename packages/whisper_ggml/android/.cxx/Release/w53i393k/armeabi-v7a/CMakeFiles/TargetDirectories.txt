@@ -1,0 +1,4 @@
+C:/Users/hp/AppData/Local/Pub/Cache/hosted/pub.dev/whisper_ggml-1.3.0/android/.cxx/Release/w53i393k/armeabi-v7a/CMakeFiles/whisper_flutter.dir
+C:/Users/hp/AppData/Local/Pub/Cache/hosted/pub.dev/whisper_ggml-1.3.0/android/.cxx/Release/w53i393k/armeabi-v7a/CMakeFiles/whisper.dir
+C:/Users/hp/AppData/Local/Pub/Cache/hosted/pub.dev/whisper_ggml-1.3.0/android/.cxx/Release/w53i393k/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/hp/AppData/Local/Pub/Cache/hosted/pub.dev/whisper_ggml-1.3.0/android/.cxx/Release/w53i393k/armeabi-v7a/CMakeFiles/rebuild_cache.dir

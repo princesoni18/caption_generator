@@ -1,0 +1,4 @@
+D:/my/caption_generator/packages/whisper_ggml/android/.cxx/Release/5j2f6855/arm64-v8a/CMakeFiles/whisper_flutter.dir
+D:/my/caption_generator/packages/whisper_ggml/android/.cxx/Release/5j2f6855/arm64-v8a/CMakeFiles/whisper.dir
+D:/my/caption_generator/packages/whisper_ggml/android/.cxx/Release/5j2f6855/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/my/caption_generator/packages/whisper_ggml/android/.cxx/Release/5j2f6855/arm64-v8a/CMakeFiles/rebuild_cache.dir

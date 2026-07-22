@@ -1,0 +1,33 @@
+{
+  "buildFiles": [
+    "C:\\Users\\hp\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\whisper_ggml-1.3.0\\android\\src\\whisper\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\hp\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\hp\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\whisper_ggml-1.3.0\\android\\.cxx\\Release\\w53i393k\\x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\hp\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\hp\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\whisper_ggml-1.3.0\\android\\.cxx\\Release\\w53i393k\\x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "whisper::@6890427a1f51a3e7e1df": {
+      "artifactName": "whisper",
+      "abi": "x86_64",
+      "output": "C:\\Users\\hp\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\whisper_ggml-1.3.0\\android\\.cxx\\Release\\w53i393k\\x86_64\\libwhisper.a",
+      "runtimeFiles": []
+    },
+    "whisper_flutter::@6890427a1f51a3e7e1df": {
+      "artifactName": "whisper_flutter",
+      "abi": "x86_64",
+      "output": "D:\\my\\caption_generator\\build\\whisper_ggml\\intermediates\\cxx\\Release\\w53i393k\\obj\\x86_64\\libwhisper.so",
+      "runtimeFiles": []
+    }
+  }
+}

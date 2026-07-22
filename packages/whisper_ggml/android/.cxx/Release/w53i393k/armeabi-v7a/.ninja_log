@@ -1,0 +1,6 @@
+# ninja log v5
+10	3479	8050684459964479	CMakeFiles/whisper.dir/whisper.cpp/ggml.c.o	df7d9a8cac2d393d
+1	6442	8050684489679249	CMakeFiles/whisper_flutter.dir/main.cpp.o	605f90102d6b7226
+18	9534	8050684520529943	CMakeFiles/whisper.dir/whisper.cpp/whisper.cpp.o	5ab483c207ccdce3
+9534	9646	8050684521674712	libwhisper.a	544dbc923e480ae9
+9646	16423	8050684589531051	D:/my/caption_generator/build/whisper_ggml/intermediates/cxx/Release/w53i393k/obj/armeabi-v7a/libwhisper.so	da825d74b2f34a67

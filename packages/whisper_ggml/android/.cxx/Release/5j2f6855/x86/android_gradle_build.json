@@ -1,0 +1,46 @@
+{
+  "buildFiles": [
+    "D:\\my\\caption_generator\\packages\\whisper_ggml\\android\\src\\whisper\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\hp\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "D:\\my\\caption_generator\\packages\\whisper_ggml\\android\\.cxx\\Release\\5j2f6855\\x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\hp\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "D:\\my\\caption_generator\\packages\\whisper_ggml\\android\\.cxx\\Release\\5j2f6855\\x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "whisper::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "whisper",
+      "output": "D:\\my\\caption_generator\\packages\\whisper_ggml\\android\\.cxx\\Release\\5j2f6855\\x86\\libwhisper.a"
+    },
+    "whisper_flutter::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "whisper_flutter",
+      "output": "D:\\my\\caption_generator\\build\\whisper_ggml\\intermediates\\cxx\\Release\\5j2f6855\\obj\\x86\\libwhisper.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "C:\\Users\\hp\\AppData\\Local\\Android\\Sdk\\ndk\\26.1.10909125\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "C:\\Users\\hp\\AppData\\Local\\Android\\Sdk\\ndk\\26.1.10909125\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

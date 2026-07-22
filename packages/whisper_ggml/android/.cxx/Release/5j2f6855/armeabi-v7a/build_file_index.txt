@@ -1,0 +1,1 @@
+D:\my\caption_generator\packages\whisper_ggml\android\src\whisper\CMakeLists.txt
