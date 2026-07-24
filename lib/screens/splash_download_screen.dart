@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:file_picker/file_picker.dart';
 import 'home_screen.dart';
 
 class SplashDownloadScreen extends StatefulWidget {
@@ -15,6 +17,7 @@ class _SplashDownloadScreenState extends State<SplashDownloadScreen> {
   bool _isDownloading = false;
   double _progress = 0.0;
   String _statusMessage = 'Checking resources...';
+  CancelToken? _cancelToken;
   
   // The medium model is ~1.5GB
   final String modelUrl = 'https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-medium.bin';
@@ -26,16 +29,33 @@ class _SplashDownloadScreenState extends State<SplashDownloadScreen> {
     _checkAndDownloadModel();
   }
 
+  @override
+  void dispose() {
+    _cancelToken?.cancel();
+    super.dispose();
+  }
+
   Future<void> _checkAndDownloadModel() async {
     try {
-      final Directory docDir = await getApplicationDocumentsDirectory();
-      final String modelPath = '${docDir.path}/$modelFilename';
+      final prefs = await SharedPreferences.getInstance();
+      String? savedPath = prefs.getString('custom_model_path');
+      String basePath;
+
+      if (savedPath != null && savedPath.isNotEmpty) {
+        basePath = savedPath;
+      } else {
+        final Directory docDir = await getApplicationDocumentsDirectory();
+        basePath = docDir.path;
+      }
+
+      final String modelPath = '$basePath/$modelFilename';
       final File modelFile = File(modelPath);
 
       if (await modelFile.exists()) {
         setState(() {
           _statusMessage = 'Resources ready.';
           _progress = 1.0;
+          _isDownloading = false;
         });
         _navigateToHome(modelPath);
       } else {
@@ -54,15 +74,17 @@ class _SplashDownloadScreenState extends State<SplashDownloadScreen> {
 
   Future<void> _downloadFile(String url, String savePath) async {
     Dio dio = Dio();
+    _cancelToken = CancelToken();
     try {
       await dio.download(
         url,
         savePath,
+        cancelToken: _cancelToken,
         onReceiveProgress: (received, total) {
           if (total != -1) {
             setState(() {
               _progress = received / total;
-              _statusMessage = 'Downloading Model... ${(received / 1024 / 1024).toStringAsFixed(1)} MB / ${(total / 1024 / 1024).toStringAsFixed(1)} MB';
+              _statusMessage = 'Downloading Model... ${(received / 1024 / 1024).toStringAsFixed(1)} MB / ${(total / 1024 / 1024).toStringAsFixed(1)} MB\nSaving to: $savePath';
             });
           }
         },
@@ -75,12 +97,33 @@ class _SplashDownloadScreenState extends State<SplashDownloadScreen> {
       _navigateToHome(savePath);
       
     } catch (e) {
+      if (e is DioException && CancelToken.isCancel(e)) {
+        return; // User cancelled
+      }
       setState(() {
         _isDownloading = false;
         _statusMessage = 'Download Failed. Please check your internet connection.\n$e';
       });
     } finally {
       dio.close();
+    }
+  }
+
+  Future<void> _changeFolder() async {
+    String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+
+    if (selectedDirectory != null) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('custom_model_path', selectedDirectory);
+      
+      _cancelToken?.cancel('User changed directory');
+      
+      setState(() {
+        _progress = 0.0;
+        _isDownloading = false;
+      });
+
+      _checkAndDownloadModel();
     }
   }
 
@@ -144,6 +187,17 @@ class _SplashDownloadScreenState extends State<SplashDownloadScreen> {
                         fontSize: 14,
                       ),
                     ),
+                    const SizedBox(height: 20),
+                    if (Platform.isWindows)
+                      OutlinedButton.icon(
+                        icon: const Icon(Icons.folder_open),
+                        label: const Text('Change Download Folder'),
+                        onPressed: _changeFolder,
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.deepPurpleAccent,
+                          side: const BorderSide(color: Colors.deepPurpleAccent),
+                        ),
+                      ),
                   ],
                 )
               else

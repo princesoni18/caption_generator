@@ -19,6 +19,7 @@ class TranscribeRequest with _$TranscribeRequest {
     @Default(false) bool noFallback,
     @Default(false) bool diarize,
     @Default(false) bool speedUp,
+    String? initialPrompt,
   }) = _TranscribeRequest;
-  const TranscribeRequest._();
+const TranscribeRequest._();
 }

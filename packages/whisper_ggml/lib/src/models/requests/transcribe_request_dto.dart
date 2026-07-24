@@ -29,6 +29,7 @@ class TranscribeRequestDto
     @JsonKey(name: 'no_fallback') required bool noFallback,
     required bool diarize,
     @JsonKey(name: 'speed_up') required bool speedUp,
+    @JsonKey(name: 'initial_prompt') String? initialPrompt,
   }) = _TranscribeRequestDto;
 
   /// Convert [request] to TranscribeRequestDto with specified [modelPath]
@@ -50,6 +51,7 @@ class TranscribeRequestDto
       noFallback: request.noFallback,
       diarize: request.diarize,
       speedUp: request.speedUp,
+      initialPrompt: request.initialPrompt,
     );
   }
   const TranscribeRequestDto._();

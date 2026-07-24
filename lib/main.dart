@@ -4,7 +4,7 @@ import 'screens/splash_download_screen.dart';
 
 void main() {
   runApp(const CaptionGeneratorApp());
-}
+} 
 
 class CaptionGeneratorApp extends StatelessWidget {
   const CaptionGeneratorApp({super.key});

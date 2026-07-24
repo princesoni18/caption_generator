@@ -41,6 +41,8 @@ mixin _$TranscribeRequestDto {
   bool get diarize => throw _privateConstructorUsedError;
   @JsonKey(name: 'speed_up')
   bool get speedUp => throw _privateConstructorUsedError;
+  @JsonKey(name: 'initial_prompt')
+  String? get initialPrompt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -67,7 +69,8 @@ abstract class $TranscribeRequestDtoCopyWith<$Res> {
       @JsonKey(name: 'split_on_word') bool splitOnWord,
       @JsonKey(name: 'no_fallback') bool noFallback,
       bool diarize,
-      @JsonKey(name: 'speed_up') bool speedUp});
+      @JsonKey(name: 'speed_up') bool speedUp,
+      @JsonKey(name: 'initial_prompt') String? initialPrompt});
 }
 
 /// @nodoc
@@ -97,6 +100,7 @@ class _$TranscribeRequestDtoCopyWithImpl<$Res,
     Object? noFallback = null,
     Object? diarize = null,
     Object? speedUp = null,
+    Object? initialPrompt = freezed,
   }) {
     return _then(_value.copyWith(
       audio: null == audio
@@ -151,6 +155,10 @@ class _$TranscribeRequestDtoCopyWithImpl<$Res,
           ? _value.speedUp
           : speedUp // ignore: cast_nullable_to_non_nullable
               as bool,
+      initialPrompt: freezed == initialPrompt
+          ? _value.initialPrompt
+          : initialPrompt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -176,7 +184,8 @@ abstract class _$$TranscribeRequestDtoImplCopyWith<$Res>
       @JsonKey(name: 'split_on_word') bool splitOnWord,
       @JsonKey(name: 'no_fallback') bool noFallback,
       bool diarize,
-      @JsonKey(name: 'speed_up') bool speedUp});
+      @JsonKey(name: 'speed_up') bool speedUp,
+      @JsonKey(name: 'initial_prompt') String? initialPrompt});
 }
 
 /// @nodoc
@@ -203,6 +212,7 @@ class __$$TranscribeRequestDtoImplCopyWithImpl<$Res>
     Object? noFallback = null,
     Object? diarize = null,
     Object? speedUp = null,
+    Object? initialPrompt = freezed,
   }) {
     return _then(_$TranscribeRequestDtoImpl(
       audio: null == audio
@@ -257,6 +267,10 @@ class __$$TranscribeRequestDtoImplCopyWithImpl<$Res>
           ? _value.speedUp
           : speedUp // ignore: cast_nullable_to_non_nullable
               as bool,
+      initialPrompt: freezed == initialPrompt
+          ? _value.initialPrompt
+          : initialPrompt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -277,7 +291,8 @@ class _$TranscribeRequestDtoImpl extends _TranscribeRequestDto {
       @JsonKey(name: 'split_on_word') required this.splitOnWord,
       @JsonKey(name: 'no_fallback') required this.noFallback,
       required this.diarize,
-      @JsonKey(name: 'speed_up') required this.speedUp})
+      @JsonKey(name: 'speed_up') required this.speedUp,
+      @JsonKey(name: 'initial_prompt') this.initialPrompt})
       : super._();
 
   factory _$TranscribeRequestDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -317,10 +332,13 @@ class _$TranscribeRequestDtoImpl extends _TranscribeRequestDto {
   @override
   @JsonKey(name: 'speed_up')
   final bool speedUp;
+  @override
+  @JsonKey(name: 'initial_prompt')
+  final String? initialPrompt;
 
   @override
   String toString() {
-    return 'TranscribeRequestDto(audio: $audio, model: $model, isTranslate: $isTranslate, threads: $threads, isVerbose: $isVerbose, language: $language, isSpecialTokens: $isSpecialTokens, isNoTimestamps: $isNoTimestamps, nProcessors: $nProcessors, splitOnWord: $splitOnWord, noFallback: $noFallback, diarize: $diarize, speedUp: $speedUp)';
+    return 'TranscribeRequestDto(audio: $audio, model: $model, isTranslate: $isTranslate, threads: $threads, isVerbose: $isVerbose, language: $language, isSpecialTokens: $isSpecialTokens, isNoTimestamps: $isNoTimestamps, nProcessors: $nProcessors, splitOnWord: $splitOnWord, noFallback: $noFallback, diarize: $diarize, speedUp: $speedUp, initialPrompt: $initialPrompt)';
   }
 
   @override
@@ -348,7 +366,9 @@ class _$TranscribeRequestDtoImpl extends _TranscribeRequestDto {
             (identical(other.noFallback, noFallback) ||
                 other.noFallback == noFallback) &&
             (identical(other.diarize, diarize) || other.diarize == diarize) &&
-            (identical(other.speedUp, speedUp) || other.speedUp == speedUp));
+            (identical(other.speedUp, speedUp) || other.speedUp == speedUp) &&
+            (identical(other.initialPrompt, initialPrompt) ||
+                other.initialPrompt == initialPrompt));
   }
 
   @JsonKey(ignore: true)
@@ -367,7 +387,8 @@ class _$TranscribeRequestDtoImpl extends _TranscribeRequestDto {
       splitOnWord,
       noFallback,
       diarize,
-      speedUp);
+      speedUp,
+      initialPrompt);
 
   @JsonKey(ignore: true)
   @override
@@ -399,8 +420,9 @@ abstract class _TranscribeRequestDto extends TranscribeRequestDto {
       @JsonKey(name: 'split_on_word') required final bool splitOnWord,
       @JsonKey(name: 'no_fallback') required final bool noFallback,
       required final bool diarize,
-      @JsonKey(name: 'speed_up')
-      required final bool speedUp}) = _$TranscribeRequestDtoImpl;
+      @JsonKey(name: 'speed_up') required final bool speedUp,
+      @JsonKey(name: 'initial_prompt')
+      final String? initialPrompt}) = _$TranscribeRequestDtoImpl;
   const _TranscribeRequestDto._() : super._();
 
   factory _TranscribeRequestDto.fromJson(Map<String, dynamic> json) =
@@ -440,6 +462,9 @@ abstract class _TranscribeRequestDto extends TranscribeRequestDto {
   @override
   @JsonKey(name: 'speed_up')
   bool get speedUp;
+  @override
+  @JsonKey(name: 'initial_prompt')
+  String? get initialPrompt;
   @override
   @JsonKey(ignore: true)
   _$$TranscribeRequestDtoImplCopyWith<_$TranscribeRequestDtoImpl>

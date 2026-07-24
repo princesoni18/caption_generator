@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/foundation.dart';
 
@@ -11,6 +12,7 @@ class NotificationService {
   bool _isInitialized = false;
 
   Future<void> init() async {
+    if (Platform.isWindows) return;
     if (_isInitialized) return;
 
     const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -31,6 +33,7 @@ class NotificationService {
   }
 
   Future<void> startTranscriptionForegroundService() async {
+    if (Platform.isWindows) return;
     await init();
     
     const AndroidNotificationDetails androidNotificationDetails = AndroidNotificationDetails(
@@ -54,6 +57,7 @@ class NotificationService {
   }
 
   Future<void> stopForegroundServiceAndNotifySuccess() async {
+    if (Platform.isWindows) return;
     // Stop foreground service
     await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.stopForegroundService();
 
@@ -77,6 +81,7 @@ class NotificationService {
   }
 
   Future<void> stopForegroundServiceAndNotifyError(String errorMsg) async {
+    if (Platform.isWindows) return;
     // Stop foreground service
     await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.stopForegroundService();
 

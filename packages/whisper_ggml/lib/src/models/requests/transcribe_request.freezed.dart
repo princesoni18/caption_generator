@@ -28,6 +28,7 @@ mixin _$TranscribeRequest {
   bool get noFallback => throw _privateConstructorUsedError;
   bool get diarize => throw _privateConstructorUsedError;
   bool get speedUp => throw _privateConstructorUsedError;
+  String? get initialPrompt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TranscribeRequestCopyWith<TranscribeRequest> get copyWith =>
@@ -52,7 +53,8 @@ abstract class $TranscribeRequestCopyWith<$Res> {
       bool splitOnWord,
       bool noFallback,
       bool diarize,
-      bool speedUp});
+      bool speedUp,
+      String? initialPrompt});
 }
 
 /// @nodoc
@@ -80,6 +82,7 @@ class _$TranscribeRequestCopyWithImpl<$Res, $Val extends TranscribeRequest>
     Object? noFallback = null,
     Object? diarize = null,
     Object? speedUp = null,
+    Object? initialPrompt = freezed,
   }) {
     return _then(_value.copyWith(
       audio: null == audio
@@ -130,6 +133,10 @@ class _$TranscribeRequestCopyWithImpl<$Res, $Val extends TranscribeRequest>
           ? _value.speedUp
           : speedUp // ignore: cast_nullable_to_non_nullable
               as bool,
+      initialPrompt: freezed == initialPrompt
+          ? _value.initialPrompt
+          : initialPrompt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -154,7 +161,8 @@ abstract class _$$TranscribeRequestImplCopyWith<$Res>
       bool splitOnWord,
       bool noFallback,
       bool diarize,
-      bool speedUp});
+      bool speedUp,
+      String? initialPrompt});
 }
 
 /// @nodoc
@@ -180,6 +188,7 @@ class __$$TranscribeRequestImplCopyWithImpl<$Res>
     Object? noFallback = null,
     Object? diarize = null,
     Object? speedUp = null,
+    Object? initialPrompt = freezed,
   }) {
     return _then(_$TranscribeRequestImpl(
       audio: null == audio
@@ -230,6 +239,10 @@ class __$$TranscribeRequestImplCopyWithImpl<$Res>
           ? _value.speedUp
           : speedUp // ignore: cast_nullable_to_non_nullable
               as bool,
+      initialPrompt: freezed == initialPrompt
+          ? _value.initialPrompt
+          : initialPrompt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -249,7 +262,8 @@ class _$TranscribeRequestImpl extends _TranscribeRequest {
       this.splitOnWord = false,
       this.noFallback = false,
       this.diarize = false,
-      this.speedUp = false})
+      this.speedUp = false,
+      this.initialPrompt})
       : super._();
 
   @override
@@ -287,10 +301,12 @@ class _$TranscribeRequestImpl extends _TranscribeRequest {
   @override
   @JsonKey()
   final bool speedUp;
+  @override
+  final String? initialPrompt;
 
   @override
   String toString() {
-    return 'TranscribeRequest(audio: $audio, isTranslate: $isTranslate, threads: $threads, isVerbose: $isVerbose, language: $language, isSpecialTokens: $isSpecialTokens, isNoTimestamps: $isNoTimestamps, nProcessors: $nProcessors, splitOnWord: $splitOnWord, noFallback: $noFallback, diarize: $diarize, speedUp: $speedUp)';
+    return 'TranscribeRequest(audio: $audio, isTranslate: $isTranslate, threads: $threads, isVerbose: $isVerbose, language: $language, isSpecialTokens: $isSpecialTokens, isNoTimestamps: $isNoTimestamps, nProcessors: $nProcessors, splitOnWord: $splitOnWord, noFallback: $noFallback, diarize: $diarize, speedUp: $speedUp, initialPrompt: $initialPrompt)';
   }
 
   @override
@@ -317,7 +333,9 @@ class _$TranscribeRequestImpl extends _TranscribeRequest {
             (identical(other.noFallback, noFallback) ||
                 other.noFallback == noFallback) &&
             (identical(other.diarize, diarize) || other.diarize == diarize) &&
-            (identical(other.speedUp, speedUp) || other.speedUp == speedUp));
+            (identical(other.speedUp, speedUp) || other.speedUp == speedUp) &&
+            (identical(other.initialPrompt, initialPrompt) ||
+                other.initialPrompt == initialPrompt));
   }
 
   @override
@@ -334,7 +352,8 @@ class _$TranscribeRequestImpl extends _TranscribeRequest {
       splitOnWord,
       noFallback,
       diarize,
-      speedUp);
+      speedUp,
+      initialPrompt);
 
   @JsonKey(ignore: true)
   @override
@@ -357,7 +376,8 @@ abstract class _TranscribeRequest extends TranscribeRequest {
       final bool splitOnWord,
       final bool noFallback,
       final bool diarize,
-      final bool speedUp}) = _$TranscribeRequestImpl;
+      final bool speedUp,
+      final String? initialPrompt}) = _$TranscribeRequestImpl;
   const _TranscribeRequest._() : super._();
 
   @override
@@ -384,6 +404,8 @@ abstract class _TranscribeRequest extends TranscribeRequest {
   bool get diarize;
   @override
   bool get speedUp;
+  @override
+  String? get initialPrompt;
   @override
   @JsonKey(ignore: true)
   _$$TranscribeRequestImplCopyWith<_$TranscribeRequestImpl> get copyWith =>

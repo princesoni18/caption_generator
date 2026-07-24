@@ -44,9 +44,12 @@ dependencies:
   permission_handler: ^11.3.1
   flutter_local_notifications: ^19.5.0
   indic_transliteration_dart: ^2.3.84
+  shared_preferences: ^2.2.3
 
 dependency_overrides:
   ffmpeg_kit_flutter_new: ^4.3.2
+  flutter_local_notifications_windows:
+    path: ./dummy_local_notifications_windows
 
 dev_dependencies:
   flutter_test:
