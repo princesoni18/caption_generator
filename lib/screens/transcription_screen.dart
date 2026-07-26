@@ -166,8 +166,10 @@ class _TranscriptionScreenState extends State<TranscriptionScreen> with SingleTi
         elevation: 0,
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 800),
+          child: Padding(
+            padding: const EdgeInsets.all(32.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -254,9 +256,24 @@ class _TranscriptionScreenState extends State<TranscriptionScreen> with SingleTi
                     fontSize: 12,
                   ),
                 ),
+                const SizedBox(height: 20),
+                ElevatedButton.icon(
+                  onPressed: () => WhisperService.openFolderLocation(_savedFilePath!),
+                  icon: const Icon(Icons.folder_open_rounded, size: 20),
+                  label: const Text('Open Folder Location'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurpleAccent,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                ),
               ]
             ],
           ),
+        ),
         ),
       ),
     );

@@ -59,7 +59,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     style: GoogleFonts.outfit(color: Colors.white54, fontSize: 16),
                   ),
                 )
-              : ListView.builder(
+              : Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 800),
+                    child: ListView.builder(
                   padding: const EdgeInsets.all(16),
                   itemCount: _files.length,
                   itemBuilder: (context, index) {
@@ -81,6 +84,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           '$size KB • ${file.lastModifiedSync().toString().split('.')[0]}',
                           style: GoogleFonts.outfit(color: Colors.white54, fontSize: 12),
                         ),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.folder_open_rounded, color: Colors.white70),
+                          tooltip: 'Open Folder Location',
+                          onPressed: () => WhisperService.openFolderLocation(file.path),
+                        ),
                         onTap: () {
                           Navigator.push(
                             context,
@@ -93,6 +101,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     );
                   },
                 ),
+              ),
+            ),
     );
   }
 }

@@ -149,8 +149,10 @@ class _SplashDownloadScreenState extends State<SplashDownloadScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 800),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -207,6 +209,7 @@ class _SplashDownloadScreenState extends State<SplashDownloadScreen> {
                 ),
             ],
           ),
+        ),
         ),
       ),
     );

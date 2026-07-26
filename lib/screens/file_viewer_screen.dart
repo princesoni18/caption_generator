@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../services/whisper_service.dart';
 
 class FileViewerScreen extends StatefulWidget {
   final File file;
@@ -63,6 +64,11 @@ class _FileViewerScreenState extends State<FileViewerScreen> {
         elevation: 0,
         actions: [
           IconButton(
+            icon: const Icon(Icons.folder_open_rounded),
+            onPressed: () => WhisperService.openFolderLocation(widget.file.path),
+            tooltip: 'Open Folder Location',
+          ),
+          IconButton(
             icon: const Icon(Icons.copy),
             onPressed: _isLoading ? null : _copyToClipboard,
             tooltip: 'Copy to Clipboard',
@@ -71,7 +77,10 @@ class _FileViewerScreenState extends State<FileViewerScreen> {
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator(color: Colors.deepPurpleAccent))
-          : SingleChildScrollView(
+          : Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 800),
+                child: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
               child: SelectableText(
                 _content,
@@ -80,6 +89,8 @@ class _FileViewerScreenState extends State<FileViewerScreen> {
                   fontSize: 14,
                   height: 1.5,
                 ),
+              ),
+            ),
               ),
             ),
     );

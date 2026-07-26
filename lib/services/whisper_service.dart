@@ -220,6 +220,20 @@ if __name__ == "__main__":
         // Fallback to app documents directory if permission is denied
         targetDir = (await getApplicationDocumentsDirectory()).path;
       }
+    } else if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+      try {
+        final Directory? downloadDir = await getDownloadsDirectory();
+        if (downloadDir != null) {
+          final Directory appDownloadDir = Directory('${downloadDir.path}/CaptionGenerator');
+          if (!await appDownloadDir.exists()) {
+            await appDownloadDir.create(recursive: true);
+          }
+          targetDir = appDownloadDir.path;
+        }
+      } catch (e) {
+        // Fallback to app documents directory if permission is denied
+        targetDir = (await getApplicationDocumentsDirectory()).path;
+      }
     }
 
     String srtPath = '$targetDir/$baseName.srt';
@@ -258,6 +272,18 @@ if __name__ == "__main__":
       } catch (e) {
         // Ignore if permission denied
       }
+    } else if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+      try {
+        final Directory? downloadDir = await getDownloadsDirectory();
+        if (downloadDir != null) {
+          final Directory dir2 = Directory('${downloadDir.path}/CaptionGenerator');
+          if (await dir2.exists()) {
+            files.addAll(dir2.listSync().whereType<File>().where((file) => file.path.endsWith('.srt')));
+          }
+        }
+      } catch (e) {
+        // Ignore if permission denied
+      }
     }
     
     // Remove duplicates based on path just in case
@@ -266,5 +292,33 @@ if __name__ == "__main__":
       uniqueFiles[f.path] = f;
     }
     return uniqueFiles.values.toList();
+  }
+
+  static Future<void> openFolderLocation(String filePath) async {
+    final file = File(filePath);
+    if (Platform.isWindows) {
+      try {
+        final winPath = file.path.replaceAll('/', '\\');
+        final result = await Process.run('explorer.exe', ['/select,$winPath']);
+        if (result.exitCode != 0 && result.exitCode != 1) {
+          final dir = file.parent.path.replaceAll('/', '\\');
+          await Process.run('explorer.exe', [dir]);
+        }
+      } catch (e) {
+        try {
+          final dir = file.parent.path.replaceAll('/', '\\');
+          await Process.run('explorer.exe', [dir]);
+        } catch (_) {}
+      }
+    } else if (Platform.isMacOS) {
+      try {
+        await Process.run('open', ['-R', filePath]);
+      } catch (_) {}
+    } else if (Platform.isLinux) {
+      try {
+        final dir = file.parent.path;
+        await Process.run('xdg-open', [dir]);
+      } catch (_) {}
+    }
   }
 }
