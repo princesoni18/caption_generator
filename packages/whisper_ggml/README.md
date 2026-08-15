@@ -1,5 +1,5 @@
 
-# Whisper GGML
+# THIS will generate caption in Hinglish
 
 
 
